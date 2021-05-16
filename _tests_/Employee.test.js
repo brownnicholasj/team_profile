@@ -16,4 +16,8 @@ describe('Employee class', () => {
 			'eName@email.com'
 		);
 	});
+
+	it("getRole() returns 'Employee'", () => {
+		expect(new Employee().getRole()).toBe('Employee');
+	});
 });
