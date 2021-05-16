@@ -10,4 +10,10 @@ describe('Employee class', () => {
 	it("getId() returns employee's id", () => {
 		expect(new Employee('eName', '3', 'eName@email.com').getId()).toBe('3');
 	});
+
+	it("getEmail() returns employee's email", () => {
+		expect(new Employee('eName', '3', 'eName@email.com').getEmail()).toBe(
+			'eName@email.com'
+		);
+	});
 });
