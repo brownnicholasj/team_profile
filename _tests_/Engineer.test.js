@@ -1,7 +1,6 @@
 const Engineer = require('../lib/engineer');
-const Employee = require('../lib/employee');
 
-const engineer = new Engineer('eName', '3', 'eName@email.com', 'eName_github');
+const engineer = new Engineer('eName', 3, 'eName@email.com', 'eName_github');
 
 describe('Engineer class', () => {
 	it('given github name is returned from github key', () => {
