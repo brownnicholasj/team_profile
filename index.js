@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const chalk = require('chalk');
+const util = require('util');
 const fs = require('fs');
+const generateHTML = require('./src/generateHTML');
 
 let role = 'Manager';
 
@@ -78,11 +80,15 @@ const userAnswers = async (collected = []) => {
 	return newEmployee !== 'No' ? userAnswers(employees) : employees;
 };
 
+const writeFileAsync = util.promisify(fs.writeFile);
+
 const init = async () => {
-	const employees = await userAnswers();
-	console.log(employees);
-	// .then((answers) => writeFileAsync('README.md', generateMarkdown(answers)))
-	// .then(() => console.log('Successfully wrote to README.md'))
+	const employees = await userAnswers()
+		// console.log(employees)
+		.then((employees) =>
+			writeFileAsync('./dist/team_profile.html', generateHTML(employees))
+		)
+		.then(() => console.log(`Your page is ready to view`));
 	// .catch((err) => console.error(err));
 };
 
