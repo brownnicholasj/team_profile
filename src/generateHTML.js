@@ -66,7 +66,7 @@ function createInt(e) {
 `;
 }
 
-function topHTML {
+function topHTML() {
     return `<!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -90,15 +90,13 @@ function topHTML {
 `
 }
 
-function bottomHTML {
+function bottomHTML() {
     return `</section>
 	</body>
 </html>`
 }
 
 function generateHTML(employees) {
-    let topHTML = `${topHTML}`;
-    let bottomHTML = `${bottomHTML}`;
     let HTML = ``;
 
     employees.forEach(e => {
@@ -114,9 +112,9 @@ function generateHTML(employees) {
     });
 
     // console.log(HTML);
-    return `${topHTML}
+    return `${topHTML()}
 ${HTML}
-${bottomHTML}`;
+${bottomHTML()}`;
 }
 
 // const test = [{"name":"Ashley","id":"1","email":"ashley@email","officeNumber":"1","role":"Manager"},{"name":"Nic","id":"2","email":"nic@email.com","github":"nicGithub","role":"Engineer"},{"name":"Libby","id":"3","email":"libby@email.com","school":"doniphan","role":"Intern"}];
