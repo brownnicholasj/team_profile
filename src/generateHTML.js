@@ -11,11 +11,17 @@ function createMgr(e) {
     let email = getMgr.email;
     let special = getMgr.officeNumber;
 
-    return `name = ${name}
-role = ${role}
-id = ${id}
-email = ${email}
-special = ${special}`;
+    return `
+<article id="${role}" class="employee">
+    <h2>${name}</h2>
+    <h3><i class="fas fa-clipboard-list">${role}</i></h3>
+    <ul>
+        <li>Id: ${id}</li>
+        <li>Email: ${email}</li>
+        <li>Office Number: ${special}</li>
+    </ul>
+</article>
+`;
 }
 
 function createEng(e) {
@@ -26,11 +32,17 @@ function createEng(e) {
     let email = getEng.email;
     let special = getEng.github;
 
-    return `name = ${name}
-role = ${role}
-id = ${id}
-email = ${email}
-special = ${special}`;
+    return `
+<article id="${role}" class="employee">
+    <h2>${name}</h2>
+    <h3><i class="fas fa-laptop-code">${role}</i></h3>
+    <ul>
+        <li>Id: ${id}</li>
+        <li>Email: ${email}</li>
+        <li>GitHub: ${special}</li>
+    </ul>
+</article>
+`;
 }
 
 function createInt(e) {
@@ -41,14 +53,52 @@ function createInt(e) {
     let email = getInt.email;
     let special = getInt.school;
 
-    return `name = ${name}
-role = ${role}
-id = ${id}
-email = ${email}
-special = ${special}`;
+    return `
+<article id="${role}" class="employee">
+    <h2>${name}</h2>
+    <h3><i class="fas fa-graduation-cap">${role}</i></h3>
+    <ul>
+        <li>Id: ${id}</li>
+        <li>Email: ${email}</li>
+        <li>School: ${special}</li>
+    </ul>
+</article>
+`;
+}
+
+function topHTML {
+    return `<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="UTF-8" />
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./assets/css/style.css" />
+        <title>Team Profile</title>
+    </head>
+
+    <body>
+        <header class="header">
+            <h1>My Team</h1>
+        </header>
+
+        <section id="teamContainer" class="content">
+`
+}
+
+function bottomHTML {
+    return `</section>
+	</body>
+</html>`
 }
 
 function generateHTML(employees) {
+    let topHTML = `${topHTML}`;
+    let bottomHTML = `${bottomHTML}`;
     let HTML = ``;
 
     employees.forEach(e => {
@@ -64,10 +114,11 @@ function generateHTML(employees) {
     });
 
     // console.log(HTML);
-    return `new HTML
-    ${HTML}`;
+    return `${topHTML}
+${HTML}
+${bottomHTML}`;
 }
 
-// const test = [{"name":"t","id":"t","email":"t","officeNumber":"t","role":"Manager"},{"name":"e","id":"e","email":"e","github":"e","role":"Engineer"},{"name":"i","id":"i","email":"i","school":"i","role":"Intern"}];
+// const test = [{"name":"Ashley","id":"1","email":"ashley@email","officeNumber":"1","role":"Manager"},{"name":"Nic","id":"2","email":"nic@email.com","github":"nicGithub","role":"Engineer"},{"name":"Libby","id":"3","email":"libby@email.com","school":"doniphan","role":"Intern"}];
 // generateHTML(test);
 module.exports = generateHTML;
