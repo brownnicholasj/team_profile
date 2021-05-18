@@ -4,20 +4,20 @@ const Engineer = require('../lib/engineer');
 const Intern = require('../lib/intern');
 
 function createMgr(e) {
-    const getMgr = new Manager(e.name,e.id,e.email,e.officeNumber);
-    let name = getMgr.name;
-    let role = getMgr.getRole();
-    let id = getMgr.id;
-    let email = getMgr.email;
-    let special = getMgr.officeNumber;
+	const getMgr = new Manager(e.name, e.id, e.email, e.officeNumber);
+	let name = getMgr.getName();
+	let role = getMgr.getRole();
+	let id = getMgr.getId();
+	let email = getMgr.getEmail();
+	let special = getMgr.officeNumber;
 
-    return `
+	return `
 <article id="${role}" class="employee">
     <h2>${name}</h2>
     <h3><i class="fas fa-clipboard-list">${role}</i></h3>
     <ul>
         <li>Id: ${id}</li>
-        <li>Email: ${email}</li>
+        <li>Email: <a href="mailto:${email}" target="_blank">${email}</a></li>
         <li>Office Number: ${special}</li>
     </ul>
 </article>
@@ -25,41 +25,42 @@ function createMgr(e) {
 }
 
 function createEng(e) {
-    const getEng = new Engineer(e.name,e.id,e.email,e.github);
-    let name = getEng.name;
-    let role = getEng.getRole();
-    let id = getEng.id;
-    let email = getEng.email;
-    let special = getEng.github;
+	const getEng = new Engineer(e.name, e.id, e.email, e.github);
+	let name = getEng.getName();
+	let role = getEng.getRole();
+	let id = getEng.getId();
+	let email = getEng.getEmail();
+	let special = getEng.getGithub();
+	let gitname = getEng.github;
 
-    return `
+	return `
 <article id="${role}" class="employee">
     <h2>${name}</h2>
     <h3><i class="fas fa-laptop-code">${role}</i></h3>
     <ul>
         <li>Id: ${id}</li>
-        <li>Email: ${email}</li>
-        <li>GitHub: ${special}</li>
+        <li>Email: <a href="mailto:${email}" target="_blank">${email}</a></li>
+        <li>GitHub: <a href="${special}" target="_blank">${gitname}</a></li>
     </ul>
 </article>
 `;
 }
 
 function createInt(e) {
-    const getInt = new Intern(e.name,e.id,e.email,e.school);
-    let name = getInt.name;
-    let role = getInt.getRole();
-    let id = getInt.id;
-    let email = getInt.email;
-    let special = getInt.school;
+	const getInt = new Intern(e.name, e.id, e.email, e.school);
+	let name = getInt.getName();
+	let role = getInt.getRole();
+	let id = getInt.getId();
+	let email = getInt.getEmail();
+	let special = getInt.getSchool();
 
-    return `
+	return `
 <article id="${role}" class="employee">
     <h2>${name}</h2>
     <h3><i class="fas fa-graduation-cap">${role}</i></h3>
     <ul>
         <li>Id: ${id}</li>
-        <li>Email: ${email}</li>
+        <li>Email: <a href="mailto:${email}" target="_blank">${email}</a></li>
         <li>School: ${special}</li>
     </ul>
 </article>
@@ -67,7 +68,7 @@ function createInt(e) {
 }
 
 function topHTML() {
-    return `<!DOCTYPE html>
+	return `<!DOCTYPE html>
 <html lang="en-us">
 <head>
 <meta charset="UTF-8" />
@@ -87,32 +88,32 @@ function topHTML() {
         </header>
 
         <section id="teamContainer" class="content">
-`
+`;
 }
 
 function bottomHTML() {
-    return `</section>
+	return `</section>
 	</body>
-</html>`
+</html>`;
 }
 
 function generateHTML(employees) {
-    let HTML = ``;
+	let HTML = ``;
 
-    employees.forEach(e => {
-        if(e.role === 'Manager'){ 
-            HTML += `${createMgr(e)}`;
-        };
-        if(e.role === 'Engineer'){
-            HTML += `${createEng(e)}`
-        };
-        if(e.role === 'Intern'){
-            HTML += `${createInt(e)}`
-        };
-    });
+	employees.forEach((e) => {
+		if (e.role === 'Manager') {
+			HTML += `${createMgr(e)}`;
+		}
+		if (e.role === 'Engineer') {
+			HTML += `${createEng(e)}`;
+		}
+		if (e.role === 'Intern') {
+			HTML += `${createInt(e)}`;
+		}
+	});
 
-    // console.log(HTML);
-    return `${topHTML()}
+	// console.log(HTML);
+	return `${topHTML()}
 ${HTML}
 ${bottomHTML()}`;
 }
